@@ -1,5 +1,6 @@
 // DEPENDENCIES
 // =====================================
+// All the variables listed are needed to run the functions
 // Import the Keys file
 var keys = require("./keys.js");
 
@@ -29,7 +30,7 @@ var getArtistNames = function(artist) {
   return artist.name;
 };
 
-// Function for running a Spotify search
+// Function for running a Spotify search 
 var getMeSpotify = function(songName) {
   if (songName === undefined) {
     songName = "What's my age again";
@@ -37,9 +38,11 @@ var getMeSpotify = function(songName) {
 
   spotify.search(
     {
+      // the type "track" is searched and the songName is defined with the chosen track.
       type: "track",
       query: songName
     },
+    // the function to notify the user when an error is present in their query.
     function(err, data) {
       if (err) {
         console.log("Error occurred: " + err);
@@ -48,6 +51,7 @@ var getMeSpotify = function(songName) {
 
       var songs = data.tracks.items;
 
+      // the for loop logs the information on the song queried by the user.
       for (var i = 0; i < songs.length; i++) {
         console.log(i);
         console.log("artist(s): " + songs[i].artists.map(getArtistNames));
@@ -65,12 +69,15 @@ var getMyTweets = function() {
   var client = new Twitter(keys);
 
   var params = {
+    //searches for tweets by screen name.
     screen_name: "cnn"
   };
   client.get("statuses/user_timeline", params, function(error, tweets, response) {
     if (!error) {
+      // the loop logs the information on the tweet in the console.
       for (var i = 0; i < tweets.length; i++) {
         console.log(tweets[i].created_at);
+        // logs the sceen name "" searched by the user.
         console.log("");
         console.log(tweets[i].text);
       }
@@ -84,12 +91,14 @@ var getMeMovie = function(movieName) {
     movieName = "Mr Nobody";
   }
 
+// the movie name searched is entered into the url to pull the correct information.
   var urlHit = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=full&tomatoes=true&apikey=40e9cece";
 
   request(urlHit, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       var jsonData = JSON.parse(body);
 
+      // the movie information is logged to the console based on the user search.
       console.log("Title: " + jsonData.Title);
       console.log("Year: " + jsonData.Year);
       console.log("Rated: " + jsonData.Rated);
@@ -105,6 +114,7 @@ var getMeMovie = function(movieName) {
 
 // Function for running a command based on text file
 var doWhatItSays = function() {
+    // the DoWhatItSays function uses the reads and writes module to access the random.txt file and do what is written.
   fs.readFile("random.txt", "utf8", function(error, data) {
     console.log(data);
 
@@ -120,6 +130,7 @@ var doWhatItSays = function() {
 };
 
 // Function for determining which command is executed
+// these are all the possible commands for the app
 var pick = function(caseData, functionData) {
   switch (caseData) {
     case "my-tweets":

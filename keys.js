@@ -6,10 +6,10 @@ console.log("Keys loaded");
 // Step Three: Then go to "Keys and Access Tokens" to get credentials for below
 // Step Four: Then click the button below on that page to create an access token
 var twitterKeys = {
-  consumer_key: "SZzsigw3iqE0pSADBUJkENCab",
-  consumer_secret: "AMw4tYFP7an0lIul49C21aS9fk2cWZTGS8XVE9bjb2JFOlNa36",
-  access_token_key: "2722037155-UARaU6pdJvvjerc1jKNuZXxprSnk4bPlbIHqY81",
-  access_token_secret: "wnpv3qmcRgT4tBLvzFEnPAqU9ih2fKkLtbE95ZIFXAaQo"
+  consumer_key: "consumerKey",
+  consumer_secret: "customerSecret",
+  access_token_key: "accessTokenKey",
+  access_token_secret: "accessTokenSecret"
 };
 
 module.exports = twitterKeys;
